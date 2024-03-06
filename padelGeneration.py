@@ -8,7 +8,7 @@ toxinData = pd.read_excel('padelFinds.xlsx')
 def generate(arg):
     try:
         feat = padelpy.from_smiles(arg[0], fingerprints=True)
-        feat['pubchem id'] = arg[1]
+        feat['pubchemid'] = arg[1]
         feat['smile'] = arg[0]
         return feat
     except:
@@ -17,7 +17,7 @@ def generate(arg):
 
 data = toxinData
 feat = padelpy.from_smiles(data['smile'][0], fingerprints=True)
-feat['pubchem id'] = data['pubchem id'][0]
+feat['pubchemid'] = data['pubchemid'][0]
 feat['smile'] = data['smile'][0]
 padelFeature = pd.DataFrame([feat])
 with ThreadPoolExecutor(max_workers = 4) as executor:
@@ -25,4 +25,4 @@ with ThreadPoolExecutor(max_workers = 4) as executor:
     for result in tqdm (results, desc='extracting'):
         if result:
             padelFeature.loc[len(padelFeature)] = result
-padelFeature.to_excel('features.xlsx', index=False)
+padelFeature.to_excel('padelfeatures.xlsx', index=False)
