@@ -1,7 +1,7 @@
 import pandas as pd
 import pubchempy as pcp
 
-nonToxicCompound = pd.read_excel('non-toxicCompounds.xlsx', index_col=0)
+nonToxicCompound = pd.read_excel('non-toxic-smiles.xlsx', index_col=0)
 
 nonToxicCompound = nonToxicCompound[['Substance']]
 nonToxicCompound['smiles'] = None
@@ -30,6 +30,6 @@ for i, row in total.iterrows():
         except:
             print(total.at[i, 'Substance'])
 
-total.to_excel('non-toxic-smiles.xlsx')
-total.to_csv('non-toxic-smiles.csv')
+total.to_excel('non-toxic-smiles1.xlsx')
+total.to_csv('non-toxic-smiles1.csv')
 
